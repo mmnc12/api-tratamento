@@ -1,5 +1,6 @@
 import Paciente from './pacienteModel.js';
 import UnidadeSaude from './unidadeSaudeModel.js';
+import Usuario from './usuario.js';
 
 Paciente.belongsTo(UnidadeSaude, {
   foreignKey: 'id_unidade_saude',
@@ -10,4 +11,4 @@ UnidadeSaude.hasMany(Paciente, {
   as: 'paciente'
 });
 
-export { Paciente, UnidadeSaude};
+export { Paciente, UnidadeSaude, Usuario};

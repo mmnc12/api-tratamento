@@ -1,5 +1,6 @@
 import express from 'express';
 import { atualizaPaciente, buscaNaoRedeBasica, buscaPorAno, buscaPorLocalidade, buscaPorNome, buscaRedeBasica, buscaTodosPacientes, cadastaPaciente, excluirPaciente } from '../controller/pacienteController.js';
+import { autenticar } from '../middleware/authMiddleware.js'
 
 
 const router = express.Router();
@@ -16,11 +17,11 @@ router.get('/pacientes/buscar/rede-basica', buscaRedeBasica);
 
 router.get('/pacientes/buscar/nao-rede-basica', buscaNaoRedeBasica);
 
-router.post('/pacientes', cadastaPaciente);
+router.post('/pacientes', autenticar, cadastaPaciente);
 
 router.put('/pacientes/:id_paciente', atualizaPaciente);
 
-router.delete('/pacientes/:id_paciente', excluirPaciente);
+router.delete('/pacientes/:id_paciente', autenticar, excluirPaciente);
 
 export default router;
 
